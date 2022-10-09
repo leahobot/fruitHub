@@ -1,0 +1,59 @@
+.product {
+width: 90%;
+padding: 2.5rem 1rem;
+      h3{
+            text-align: center;
+      }
+      .card {
+      width: 100%;
+      max-width: 500px;
+      padding: 1rem;
+      }
+            form {
+            padding: 2rem 2.5rem;
+            label {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding-top: 1rem;
+            }
+            input[type="text"],
+            input[type="number"],
+            input[type="file"],
+            input[type="email"],
+            select,
+            textarea,
+            input[type="password"] {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 300;
+            padding: 0.7rem 1rem;
+            appearance: none;
+            accent-color: var(--light-blue);
+            margin: 1rem auto;
+            width: 100%;
+            border: 1px solid lightgrey;
+            border-radius: 3px;
+            outline: none;
+            }
+
+                  .progress {
+                  background-color: white;
+                  border: 1px solid lightgray;
+                  border-radius: 17px; 
+                        .progress-bar {
+                        background-color: var(--light-blue);
+                        border-radius: 15px;
+                        color: #fff; 
+                        font-size: 1.2rem;
+                        margin: -1px;
+                        font-weight: 500;
+                        padding: 0.2rem 1.5rem;
+                        }
+                  }
+      }
+}
+
+.group {
+      padding: 1rem 1.5rem;
+}

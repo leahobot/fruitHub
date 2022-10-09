@@ -2,10 +2,10 @@
 
 :root {
   --font-family: "Poppins", sans-serif;
-  --gradient: rgb(79,160,247);
-  --dark-blue: #193654;
-  --blue: #4FA0F7;
-  --light-blue: #36C2F5;
+  --gradient: #778062;
+  --dark-blue: #64685A;
+  --blue: #848E6B;
+  --light-blue: #9EAA7E;
 
   --color-white: #fff;
   --color-dark: #333;
@@ -15,9 +15,9 @@
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
   --color-purple: #9d0191;
-  --color-danger: #ff7722;
+  --color-danger: #FFBA08;
 
-  --color-primary: #075BB5;
+  --color-primary: #E85D04;
   --color-success: #28a745;
 }
 
@@ -301,7 +301,7 @@ p {
 
 .--btn-primary {
   color: #fff;
-  background: #193654;
+  background: #64685A;
 }
 .--btn-secondary {
   color: #fff;
@@ -432,4 +432,19 @@ a {
 a:hover {
   color: var(--color-dark);
   font-size: 1.5rem;
+}
+
+.admin-btn{
+  padding: 0.6rem 1.7rem;
+  color: var(--gradient);
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.admin-btn:hover{
+  background-color: var(--gradient);
+  color: white;
 }

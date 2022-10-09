@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import logo from "../../logo.svg";
+import logo from "../../logo.png";
 import {NavLink, Link, useNavigate} from "react-router-dom";
 import styles from "./NavBar.module.scss";
 import {FaShoppingCart, FaTimes, FaUserCircle} from "react-icons/fa";
@@ -11,6 +11,7 @@ import {toast} from "react-toastify";
 import {useDispatch} from "react-redux";
 import {ShowOnLogin} from "../hideLinks/HideLinks";
 import {ShowOnLogout} from "../hideLinks/HideLinks";
+import {AdminOnlyLink} from "../adminOnlyRoutes/AdminOnlyRoutes";
 
 const NavBar = () => {
 	const navigate = useNavigate();
@@ -105,6 +106,13 @@ const NavBar = () => {
 							/>
 						</li>
 						<li>
+							<AdminOnlyLink>
+								<Link to='/admin/home'>
+									<button className='admin-btn'>Admin</button>
+								</Link>
+							</AdminOnlyLink>
+						</li>
+						<li>
 							<NavLink to='/' className={activeLink}>
 								Home
 							</NavLink>
@@ -126,7 +134,7 @@ const NavBar = () => {
 						</ShowOnLogout>
 
 						<ShowOnLogin>
-							<a href='#home' style={{color: "#193654"}}>
+							<a href='#profile' style={{color: "#FFBA08"}}>
 								<FaUserCircle size={16} />
 								Hi, {displayUser}
 							</a>

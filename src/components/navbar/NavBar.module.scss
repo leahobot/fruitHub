@@ -14,7 +14,8 @@ nav {
 }
 
 .nav {
-  height: 7rem;
+  height: 6.5rem;
+  font-size: 1.4rem;
   max-width: 80%;
   margin: 0 auto;
   display: flex;
@@ -26,7 +27,7 @@ nav {
   width: 10%;
 
   img{
-    height: 6rem;
+    height: 5rem;
     object-fit: cover;
 
     &:hover{
@@ -50,7 +51,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7rem;
+    gap: 5rem;
     list-style: none;
 
     .logo-mobile {
@@ -60,7 +61,7 @@ nav {
     li {
       a{
         color: #fff;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
 
         &:hover{
           color: var(--color-primary);
@@ -83,7 +84,7 @@ nav {
 
     a{
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       position: relative;
 
       &:hover {

@@ -33,6 +33,7 @@ const SignUp = () => {
 				setEmail("");
 				setPassword("");
 				setConPassword("");
+
 				navigate("/login");
 			})
 			.catch((error) => {

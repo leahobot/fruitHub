@@ -1,0 +1,50 @@
+.navbar {
+  border-right: 1px solid #ccc;
+  min-height: 80vh;
+
+  .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4rem;
+    background-color: #848E6B;
+
+      p{
+      color: #fff;
+      margin-top: 0.5rem;
+      }
+  }
+
+  nav ul {
+            li {
+            border-bottom: 1px solid #ccc;
+            background-color: white;
+            font-size: 1.7;
+            display: flex;
+            align-items: center;
+            padding-left: 2rem;
+            font-weight: 500;
+            height: 4.5rem;
+            position: relative;
+                  a {
+                  display: block;
+                  width: 100%;
+                  }           
+            }
+      }
+}
+
+.active {
+  cursor: pointer;
+}
+
+.active::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #FFBA08;
+}
