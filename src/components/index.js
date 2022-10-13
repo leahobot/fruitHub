@@ -3,3 +3,5 @@ export {default as Footer} from "./footer/Footer";
 export {default as Card} from "./card/Card";
 export {default as Loader} from "./loader/Loader";
 export {default as Slider} from "./slider/Slider";
+export {default as ProductDetails} from "./product/productDetails/ProductDetails";
+export {default as Pagination} from "./pagination/Pagination";

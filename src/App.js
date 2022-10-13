@@ -3,7 +3,7 @@ import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {Routes, Route} from "react-router-dom";
 import {Home, Admin, Contact, SignUp, Login, Reset} from "./pages";
-import {NavBar, Footer} from "./components";
+import {NavBar, Footer, ProductDetails} from "./components";
 import AdminOnlyRoutes from "./components/adminOnlyRoutes/AdminOnlyRoutes";
 import "./App.scss";
 
@@ -24,6 +24,7 @@ function App() {
 							</AdminOnlyRoutes>
 						}
 					/>
+					<Route path='/product-details/:id' element={<ProductDetails />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/signUp' element={<SignUp />} />
 					<Route path='/reset' element={<Reset />} />

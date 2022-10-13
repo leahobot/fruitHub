@@ -448,3 +448,7 @@ a:hover {
   background-color: var(--gradient);
   color: white;
 }
+
+.btn:active{
+  transform: translateY(3px);
+}

@@ -48,3 +48,13 @@
   height: 100%;
   background-color: #FFBA08;
 }
+
+
+@media screen and(max-width: 600px) {
+  .navbar {
+  border-right: 0;
+  display: flex;
+  min-height: 0;
+}
+
+}

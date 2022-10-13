@@ -10,3 +10,21 @@
     padding: 1rem;
   }
 }
+
+@media screen and (max-width:600px) {
+  .admin{
+    flex-direction: column;
+    justify-content: center;
+    
+    .navbar{
+      width: 100%;
+      min-height: 0;
+    }
+    
+    .content{
+      width: 100%;
+      padding: 0;
+    }
+  }
+  
+}

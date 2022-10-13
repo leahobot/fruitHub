@@ -1,0 +1,142 @@
+.table {
+  padding: 5px;
+  width: 100%;
+  overflow-x: auto;
+  
+  h3{
+      text-align: center;
+      padding-top: 2rem;
+  }
+
+  .search {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1.4rem;
+
+    thead {
+      border-top: 2px solid var(--light-blue);
+      border-bottom: 2px solid var(--light-blue);
+    }
+
+    th {
+      border: 1px solid lightgray;
+    }
+
+    th,
+    td {
+      vertical-align: top;
+      text-align: left;
+      padding: 8px;
+     
+    }
+
+    tr {
+      border-bottom: 1px solid lightgray;
+    }
+
+  }
+}
+
+.image{
+      width: 17rem;
+      height: 13rem;
+      object-fit: cover;
+      border-radius: 5px;
+}
+
+.icons{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      gap:1rem;
+      
+      a{
+            font-size: 2rem;
+      }
+}
+
+#trash{
+      margin-top: -6px;
+}
+
+#trash:active{
+      transform: translateY(2px);
+}
+
+@media screen and (max-width: 850px) and (min-width: 601px){
+  .table {
+    padding: 1rem 0.5rem;
+
+    table {
+    font-size: 1.2rem;
+    }
+  }
+
+  
+  .image{
+        width: 9rem;
+        height: 6rem;
+        border-radius: 3px;
+  }
+
+  .icons{
+        font-size: 1.4rem;  
+        a{
+              font-size: 1.6rem;
+        }
+  }
+
+  #trash{
+        margin-top: -5px;
+  }
+}
+
+
+@media screen and (max-width:600px) {
+  .table {
+    padding: 1rem 0.5rem;
+  
+    h3{
+      padding-top: 3rem;
+    }
+
+    table {
+    font-size: 1rem;
+    
+        th,
+        td {
+        padding: 2px;
+        }
+    
+
+
+    }
+  }
+
+  .image{
+        width: 3rem;
+        height: 4rem;
+        border-radius: 2px;
+  }
+
+  .icons{
+        font-size: 1.1rem;  
+        gap: 0.5rem;
+
+        a{
+              font-size: 1.3rem;
+        }
+  }
+
+  #trash{
+        margin-top: -4px;
+  }
+
+}
+
