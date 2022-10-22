@@ -1,15 +1,28 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import styles from "./ProductDetails.module.scss";
 import {Link, useParams} from "react-router-dom";
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../../../firebase/config";
 import {toast} from "react-toastify";
 import Loader from "../../loader/Loader";
+import {useDispatch, useSelector} from "react-redux";
+import {
+	ADD_TO_CART,
+	CALCULATE_TOTALQTY,
+	DECRESASE_CART,
+	selectCartItems,
+} from "../../../redux/slice/cartSlice";
 
 const ProductDetails = () => {
 	const {id} = useParams();
 	const [isLoading, setIsLoading] = useState(false);
 	const [product, setProduct] = useState(null);
+	const dispatch = useDispatch();
+	const cartItems = useSelector(selectCartItems);
+
+	const cart = cartItems.find((cart) => cart.id === id);
+
+	const isCartAdded = cartItems.findIndex((cart) => cart.id === id);
 
 	useEffect(() => {
 		const getProduct = async () => {
@@ -27,9 +40,18 @@ const ProductDetails = () => {
 			}
 		};
 		getProduct();
-	}, []);
+	}, [id]);
 
-	console.log(product);
+	const addToCart = (product) => {
+		dispatch(ADD_TO_CART(product));
+		dispatch(CALCULATE_TOTALQTY());
+	};
+
+	const decreaseCart = (product) => {
+		dispatch(DECRESASE_CART(product));
+		dispatch(CALCULATE_TOTALQTY());
+	};
+
 	return (
 		<section>
 			<div className={`container ${styles.product}`}>
@@ -55,14 +77,28 @@ const ProductDetails = () => {
 							</p>
 
 							<div className={styles.count}>
-								<button className='--btn'>-</button>
-								<p>
-									<b>1</b>
-								</p>
-								<button className='--btn'>+</button>
+								{isCartAdded < 0 ? null : (
+									<Fragment>
+										<button
+											className='--btn'
+											onClick={() => decreaseCart(product)}>
+											-
+										</button>
+										<p>
+											<b>{cart.cartQty}</b>
+										</p>
+										<button
+											className='--btn'
+											onClick={() => addToCart(product)}>
+											+
+										</button>
+									</Fragment>
+								)}
 							</div>
 
-							<button className={`--btn ${styles["details-btn"]}`}>
+							<button
+								className={`--btn ${styles["details-btn"]}`}
+								onClick={() => addToCart(product)}>
 								Add to Cart
 							</button>
 						</div>

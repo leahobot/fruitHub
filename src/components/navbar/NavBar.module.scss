@@ -1,10 +1,17 @@
-// .fixed {
-//   width: 100%;
-//   position: fixed;
-//   top: 0;
-//   transition: all 0.5s;
-//   z-index: 9;
-// }
+.fixed {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  animation: slideIn 0.4s ease-in alternate;
+  backface-visibility: hidden;
+  z-index: 50;
+}
+
+@keyframes slideIn {
+  from {transform: translateY(-100%);}
+  to {transform: translateY(0);}
+}
 
 nav {
   width: 100%;

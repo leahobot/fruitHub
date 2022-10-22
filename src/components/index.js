@@ -5,3 +5,5 @@ export {default as Loader} from "./loader/Loader";
 export {default as Slider} from "./slider/Slider";
 export {default as ProductDetails} from "./product/productDetails/ProductDetails";
 export {default as Pagination} from "./pagination/Pagination";
+export {default as CheckoutSummary} from "./checkoutSummary/CheckoutSummary";
+export {default as CheckoutForm} from "./checkoutForm/CheckoutForm";

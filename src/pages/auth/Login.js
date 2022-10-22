@@ -11,6 +11,8 @@ import {
 	FacebookAuthProvider,
 	signInWithPopup,
 } from "firebase/auth";
+import {useSelector} from "react-redux";
+import {selectPreviousUrl} from "../../redux/slice/cartSlice";
 import {auth} from "../../firebase/config";
 import {toast} from "react-toastify";
 
@@ -20,6 +22,15 @@ const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+
+	const previousUrl = useSelector(selectPreviousUrl);
+
+	const redirectUser = () => {
+		if (previousUrl.includes("cart")) {
+			return navigate("/cart");
+		}
+		navigate("/");
+	};
 
 	const loginUser = (e) => {
 		e.preventDefault();
@@ -33,7 +44,7 @@ const Login = () => {
 				toast("Login Successful!");
 				setEmail("");
 				setPassword("");
-				navigate("/");
+				redirectUser();
 			})
 			.catch((error) => {
 				// const errorCode = error.code;

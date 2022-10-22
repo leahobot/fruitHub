@@ -1,16 +1,19 @@
 import React, {useState, useEffect} from "react";
+import styles from "./NavBar.module.scss";
 import logo from "../../logo.png";
 import {NavLink, Link, useNavigate} from "react-router-dom";
-import styles from "./NavBar.module.scss";
 import {FaShoppingCart, FaTimes, FaUserCircle} from "react-icons/fa";
 import {HiOutlineMenuAlt3} from "react-icons/hi";
 import {signOut, onAuthStateChanged} from "firebase/auth";
 import {SET_ACTIVE_USER, REMOVE_ACTIVE_USER} from "../../redux/slice/authSlice";
 import {auth} from "../../firebase/config";
 import {toast} from "react-toastify";
-import {useDispatch} from "react-redux";
-import {ShowOnLogin} from "../hideLinks/HideLinks";
-import {ShowOnLogout} from "../hideLinks/HideLinks";
+import {
+	CALCULATE_TOTALQTY,
+	selectCartTotalQty,
+} from "../../redux/slice/cartSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {ShowOnLogin, ShowOnLogout} from "../hideLinks/HideLinks";
 import {AdminOnlyLink} from "../adminOnlyRoutes/AdminOnlyRoutes";
 
 const NavBar = () => {
@@ -19,6 +22,17 @@ const NavBar = () => {
 
 	const [displayMenu, setDisplayMenu] = useState(false);
 	const [displayUser, setDisplayUser] = useState("");
+	const [scrollPage, setScrollPage] = useState(false);
+	const cartTotalQty = useSelector(selectCartTotalQty);
+
+	const fixNavBar = () => {
+		if (window.scrollY > 50) {
+			setScrollPage(true);
+		} else {
+			setScrollPage(false);
+		}
+	};
+	window.addEventListener("scroll", fixNavBar);
 
 	const activeLink = ({isActive}) =>
 		isActive ? `${styles["active-color"]}` : "";
@@ -28,7 +42,7 @@ const NavBar = () => {
 			Cart
 			<span>
 				<FaShoppingCart />
-				<p>0</p>
+				<p>{cartTotalQty}</p>
 			</span>
 		</NavLink>
 	);
@@ -59,6 +73,8 @@ const NavBar = () => {
 				dispatch(REMOVE_ACTIVE_USER());
 			}
 		});
+
+		dispatch(CALCULATE_TOTALQTY());
 	}, [dispatch, displayUser]);
 
 	const logoutUser = () => {
@@ -73,7 +89,7 @@ const NavBar = () => {
 	};
 
 	return (
-		<nav>
+		<nav className={scrollPage ? `${styles.fixed}` : null}>
 			<div className={styles.nav}>
 				<div className={styles["logo-container"]}>
 					<Link to='/'>

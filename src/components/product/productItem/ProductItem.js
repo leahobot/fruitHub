@@ -2,6 +2,8 @@ import React from "react";
 import {Link} from "react-router-dom";
 import styles from "./ProductItem.module.scss";
 import Card from "../../card/Card";
+import {useDispatch} from "react-redux";
+import {ADD_TO_CART, CALCULATE_TOTALQTY} from "../../../redux/slice/cartSlice";
 
 const ProductItem = ({
 	grid,
@@ -13,12 +15,19 @@ const ProductItem = ({
 	imageUrl,
 	description,
 }) => {
+	const dispatch = useDispatch();
+
 	const shortenText = (text, n) => {
 		if (text.length > n) {
 			const shortenedText = text.slice(0, n).concat("...");
 			return shortenedText;
 		}
 		return text;
+	};
+
+	const addToCart = (product) => {
+		dispatch(ADD_TO_CART(product));
+		dispatch(CALCULATE_TOTALQTY());
 	};
 
 	return (
@@ -39,7 +48,7 @@ const ProductItem = ({
 						<p className={styles.desc}>{shortenText(description, 200)}</p>
 					)}
 
-					<button className='--btn' onClick={() => ""}>
+					<button className='--btn' onClick={() => addToCart(product)}>
 						Add to Cart
 					</button>
 				</div>
