@@ -13,6 +13,7 @@ import {
 	CheckoutDetails,
 	CheckoutSuccess,
 	Checkout,
+	OrderHistory,
 } from "./pages";
 import {NavBar, Footer, ProductDetails} from "./components";
 import AdminOnlyRoutes from "./components/adminOnlyRoutes/AdminOnlyRoutes";
@@ -43,6 +44,7 @@ function App() {
 					<Route path='/checkout' element={<Checkout />} />
 					<Route path='/checkout-details' element={<CheckoutDetails />} />
 					<Route path='/checkout-success' element={<CheckoutSuccess />} />
+					<Route path='/order-history' element={<OrderHistory />} />
 				</Routes>
 				<Footer />
 			</div>

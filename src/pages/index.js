@@ -5,7 +5,7 @@ export {default as CheckoutDetails} from "./checkout/CheckoutDetails";
 export {default as CheckoutSuccess} from "./checkout/CheckoutSuccess";
 export {default as Contact} from "./contact/Contact";
 export {default as Home} from "./home/Home";
-export {default as Order} from "./orderHistory/Order";
+export {default as OrderHistory} from "./orderHistory/OrderHistory";
 export {default as Login} from "./auth/Login";
 export {default as SignUp} from "./auth/SignUp";
 export {default as Reset} from "./auth/Reset";

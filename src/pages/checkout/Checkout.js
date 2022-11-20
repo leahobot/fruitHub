@@ -16,7 +16,7 @@ import {
 } from "../../redux/slice/checkoutSlice";
 import {toast} from "react-toastify";
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
+const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_PK}`);
 
 const Checkout = () => {
 	const [message, setMessage] = useState("Initializing Checkout...");
@@ -35,11 +35,11 @@ const Checkout = () => {
 		dispatch(CALCULATE_TOTALQTY());
 	}, [dispatch, cartItems]);
 
-	const desc = `FruitHub payment: email: ${customerEmail}, Amount : ${totalAmount}`;
+	const description = `FruitHub payment: email: ${customerEmail}, Amount : ${totalAmount}`;
 
 	useEffect(() => {
 		// Create PaymentIntent as soon as the page loads
-		fetch("http://localhost:4242/create-payment-intent", {
+		fetch("https://localhost:4242/create-payment-intent/", {
 			method: "POST",
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({
@@ -47,7 +47,7 @@ const Checkout = () => {
 				userEmail: customerEmail,
 				shipping: shippingAddress,
 				billing: billingAddress,
-				desc,
+				description,
 			}),
 		})
 			.then((res) => {

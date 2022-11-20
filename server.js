@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
+const stripe = require("stripe")(`${process.env.REACT_APP_STRIPE_PRIVATE_KEY}`);
 
 const app = express();
 
@@ -26,7 +26,7 @@ const calculateOrderAmount = (items) => {
 };
 
 app.post("/create-payment-intent", async (req, res) => {
-	const {items, shipping, desc} = req.body;
+	const {items, shipping, description} = req.body;
 
 	// Create a PaymentIntent with the order amount and currency
 	const paymentIntent = await stripe.paymentIntents.create({
@@ -35,7 +35,7 @@ app.post("/create-payment-intent", async (req, res) => {
 		automatic_payment_methods: {
 			enabled: true,
 		},
-		desc,
+		description,
 		shipping: {
 			address: {
 				line1: shipping.line1,

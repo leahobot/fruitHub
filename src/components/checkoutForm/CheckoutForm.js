@@ -14,6 +14,9 @@ import Card from "../card/Card";
 import Loader from "../loader/Loader";
 import CheckoutSummary from "../checkoutSummary/CheckoutSummary";
 import {toast} from "react-toastify";
+import {addDoc, Timestamp} from "firebase/firestore";
+import {collection} from "firebase/firestore";
+import {db} from "../../firebase/config";
 
 const CheckoutForm = () => {
 	const stripe = useStripe();
@@ -45,7 +48,30 @@ const CheckoutForm = () => {
 		}
 	}, [stripe]);
 
-	const saveOrder = () => {};
+	const saveOrder = () => {
+		const today = new Date();
+		const date = today.toDateString();
+		const time = today.toLocaleTimeString();
+		const orderConfig = {
+			userID: userId,
+			userEmail,
+			orderDate: date,
+			orderTime: time,
+			orderAmount: cartTotalAmount,
+			orderStatus: "Order Placed...",
+			cartItems,
+			shippingAddress,
+			createdAt: Timestamp.now().toDate(),
+		};
+
+		try {
+			addDoc(collection(db, "orders"), orderConfig);
+			dispatch(CLEAR_CART());
+			toast.success("Order Saved");
+		} catch (error) {
+			toast.error("Product Upload failed");
+		}
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -53,14 +79,12 @@ const CheckoutForm = () => {
 		setMessage(null);
 
 		if (!stripe || !elements) {
-			// Stripe.js has not yet loaded.
-			// Make sure to disable form submission until Stripe.js has loaded.
 			return;
 		}
 
 		setIsLoading(true);
 
-		const confirmPayment = await stripe
+		await stripe
 			.confirmPayment({
 				elements,
 				confirmParams: {
@@ -79,7 +103,7 @@ const CheckoutForm = () => {
 				if (result.paymentIntent) {
 					if (result.paymentIntent.status === "succeeded") {
 						setIsLoading(false);
-						toast("Payment Successful");
+						toast.success("Payment Successful");
 						saveOrder();
 					}
 				}
@@ -92,7 +116,7 @@ const CheckoutForm = () => {
 		<section>
 			<div className={`container ${styles.checkout}`}>
 				<h2>Checkout</h2>
-				<form onSubmit={(e) => handleSubmit(e)}>
+				<form onSubmit={handleSubmit}>
 					<div>
 						<Card cardClass={styles.card}>
 							<CheckoutSummary />
